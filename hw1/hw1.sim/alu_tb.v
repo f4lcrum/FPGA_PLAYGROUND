@@ -55,6 +55,7 @@ module alu_tb;
     integer i,j;
     // aux signal to indicate the simulation finish
     reg is_finished = 1'b0;
+    reg is_interrupted = 1'b0;
   
     // Instantiate DUT (Pozn. Device Under Test ) 
     alu #(.DW(DW)) dut (
@@ -89,7 +90,1495 @@ module alu_tb;
   
       // Generate a series of transactions
       /* complete the code here */
-      // 4BIT TESTS AND "DVIN DISABLED" TEST BEGIN
+      
+      //|----------------------------------------------|
+      //|  4BIT TESTS WITH OP INTERRUPT   TEST BEGIN   |
+      //|----------------------------------------------|
+      
+       // A + B operation interrupt by ADD OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b000;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b000;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A + B operation interrupt by SUB OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b000;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b001;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+        // A + B operation interrupt by MUL OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b000;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b010;
+            
+            #40;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+        // A + B operation interrupt by AND OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b000;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b011;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A + B operation interrupt by OR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b000;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b100;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A + B operation interrupt by XOR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b000;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b101;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A + B operation interrupt by NOT OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b000;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b110;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+      
+       // A * B operation interrupt by ADD OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b000;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       
+       // A * B operation interrupt by SUB OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            #20;
+            
+            is_interrupted = 1;
+            dvin = 1'b0;
+            
+            #20;
+            
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b000;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+       
+       // A * B operation interrupt by MUL OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            #20;
+            
+            is_interrupted = 1;
+            dvin = 1'b0;
+            
+            #20;
+            
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b010;
+            #40;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+        
+       
+        // A * B operation interrupt by AND OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            #20;
+            
+            is_interrupted = 1;
+            dvin = 1'b0;
+            
+            #20;
+            
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b011;
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+       
+       
+       // A * B operation interrupt by OR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            #20;
+            
+            is_interrupted = 1;
+            dvin = 1'b0;
+            
+            #20;
+            
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b100;
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+      
+      // A * B operation interrupt by XOR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+      
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            #20;
+            
+            is_interrupted = 1;
+            dvin = 1'b0;
+            
+            #20;
+            
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b101;
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+       
+       // A * B operation interrupt by NOT OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+             #20;
+            
+            is_interrupted = 1;
+            dvin = 1'b0;
+            
+            #20;
+            
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b110;
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+       
+      
+      // A - B operation interrupt by ADD OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b001;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b000;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A - B operation interrupt by SUB OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b001;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b001;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+        // A - B operation interrupt by MUL OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b001;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b010;
+            
+            #40;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+        // A - B operation interrupt by AND OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b001;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b011;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A - B operation interrupt by OR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b001;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b100;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A - B operation interrupt by XOR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b001;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b101;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A - B operation interrupt by NOT OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b001;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b110;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+      
+      // A & B operation interrupt by ADD OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b011;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b000;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A & B operation interrupt by SUB OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b011;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b001;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+        // A & B operation interrupt by MUL OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b011;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b010;
+            
+            #40;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+        // A & B operation interrupt by AND OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b011;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b011;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A & B operation interrupt by OR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b011;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b100;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A & B operation interrupt by XOR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b011;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b101;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A & B operation interrupt by NOT OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b011;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b110;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A | B operation interrupt by ADD OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b100;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b000;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A | B operation interrupt by SUB OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b100;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b001;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+        // A | B operation interrupt by MUL OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b100;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b010;
+            
+            #40;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+        // A | B operation interrupt by AND OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b100;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b011;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A | B operation interrupt by OR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b100;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b100;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A | B operation interrupt by XOR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b100;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b101;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A | B operation interrupt by NOT OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b100;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b110;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+           
+       // A ^ B operation interrupt by ADD OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b101;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b000;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A ^ B operation interrupt by SUB OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b101;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b001;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+        // A ^ B operation interrupt by MUL OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b101;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b010;
+            
+            #40;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+        // A ^ B operation interrupt by AND OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b101;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b011;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A ^ B operation interrupt by OR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b101;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b100;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A ^ B operation interrupt by XOR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b101;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b101;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // A ^ B operation interrupt by NOT OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b101;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b110;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end    
+       
+       // ~A operation interrupt by ADD OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       
+       for (j = 0; j < (2**DW); j = j + 1) begin
+          A = i;
+          B = j;
+          opcode = 3'b110;
+          dvin = 1'b1;
+          #20;
+          is_interrupted = 1;
+          dvin = 1'b0;
+          #20;
+          is_interrupted = 0; 
+          dvin= 1'b1;
+          opcode = 3'b000;
+            
+          #20;
+          rst = 1'b1;
+          #20;
+          rst = 1'b0;
+          #20;
+            
+        end
+         
+       
+       // ~A operation interrupt by SUB OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       
+       for (j = 0; j < (2**DW); j = j + 1) begin
+          A = i;
+          B = j;
+          opcode = 3'b110;
+          dvin = 1'b1;
+          #20;
+          is_interrupted = 1;
+          dvin = 1'b0;
+          #20;
+          is_interrupted = 0; 
+          dvin= 1'b1;
+          opcode = 3'b001;
+            
+          #20;
+          rst = 1'b1;
+          #20;
+          rst = 1'b0;
+          #20;
+            
+        end
+       
+        // ~A operation interrupt by MUL OPERATION with ASSERTED DVIN 
+          
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       
+       for (j = 0; j < (2**DW); j = j + 1) begin
+          A = i;
+          B = j;
+          opcode = 3'b110;
+          dvin = 1'b1;
+          #20;
+          is_interrupted = 1;
+          dvin = 1'b0;
+          #20;
+          is_interrupted = 0; 
+          dvin= 1'b1;
+          opcode = 3'b010;
+            
+          #40;
+          rst = 1'b1;
+          #20;
+          rst = 1'b0;
+          #20;
+            
+        end
+       
+        // ~A operation interrupt by AND OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       
+       for (j = 0; j < (2**DW); j = j + 1) begin
+          A = i;
+          B = j;
+          opcode = 3'b110;
+          dvin = 1'b1;
+          #20;
+          is_interrupted = 1;
+          dvin = 1'b0;
+          #20;
+          is_interrupted = 0; 
+          dvin= 1'b1;
+          opcode = 3'b011;
+            
+          #20;
+          rst = 1'b1;
+          #20;
+          rst = 1'b0;
+          #20;
+            
+        end
+       
+       // ~A operation interrupt by OR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       
+       for (j = 0; j < (2**DW); j = j + 1) begin
+          A = i;
+          B = j;
+          opcode = 3'b110;
+          dvin = 1'b1;
+          #20;
+          is_interrupted = 1;
+          dvin = 1'b0;
+          #20;
+          is_interrupted = 0; 
+          dvin= 1'b1;
+          opcode = 3'b100;
+            
+          #20;
+          rst = 1'b1;
+          #20;
+          rst = 1'b0;
+          #20;
+            
+        end  
+       
+       // ~A operation interrupt by XOR OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b110;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b101;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end  
+       
+       // ~A operation interrupt by NOT OPERATION with ASSERTED DVIN 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b110;
+            dvin = 1'b1;
+            #20;
+            is_interrupted = 1;
+            dvin = 1'b0;
+            #20;
+            is_interrupted = 0; 
+            dvin= 1'b1;
+            opcode = 3'b110;
+            
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+            
+          end
+       end    
+            
+      //|----------------------------------------------|
+      //|  4BIT TESTS AND "DVIN DISABLED" TEST BEGIN   |
+      //|----------------------------------------------|
       // A + B operation
       
       for (i = 0; i < (2**DW); i = i + 1) begin
@@ -136,11 +1625,13 @@ module alu_tb;
             B = j;
             opcode = 3'b010;
             dvin = 1'b1;
-            #20;
+            #40;
             dvin = 1'b0;           
           end
        end    
        
+       
+       /* 
        // A * B operation interrupt by ADD OPERATION with not asserted dvin (mul_phase attack) 
        rst = 1'b1;
        #20;
@@ -166,7 +1657,7 @@ module alu_tb;
        end    
        
        // A * B operation interrupt by SUB OPERATION with not asserted dvin (mul_phase attack) 
-       
+      
        rst = 1'b1;
        #20;
        rst = 1'b0;
@@ -319,7 +1810,7 @@ module alu_tb;
             #20;
           end
        end
-       
+       */
        // A & B operation
        
        rst = 1'b1;
@@ -415,7 +1906,10 @@ module alu_tb;
       mul_phase = 0;
       forever begin
         @(posedge clk);
-        if (dvout) begin
+        if (is_interrupted) begin 
+            mul_phase = 0; //reset for rightly calculating the output transcactions
+        end
+        if (dvout && (A_reg == A && B_reg == B && op_reg == opcode && ~is_interrupted)) begin
           if (dvin == 1'b0) begin 
             not_asserted_transcations = not_asserted_transcations + 1;
           end
@@ -430,16 +1924,18 @@ module alu_tb;
           /* complete the code here */
           
                    
-          if (opcode == 3'b010) begin 
+          if (op_reg == 3'b010) begin 
             if (mul_phase) begin 
                 output_transactions = output_transactions + 1;
             end
           end 
           else begin
+            /*
             if (~mul_phase) begin 
                 output_transactions = output_transactions + 1;
             end
-            
+            */
+            output_transactions = output_transactions + 1;
           end         
           
           
@@ -449,19 +1945,19 @@ module alu_tb;
          
           // A + B 
           control_result = A_reg + B_reg;
-          if (opcode == 3'b000 && (control_result != expected_result) && ~mul_phase) begin
+          if (op_reg == 3'b000 && (control_result != expected_result) && ~mul_phase) begin
             total_errors = total_errors + 1;
           end
           
           // A - B
           control_result = A_reg - B_reg;
-          if (opcode == 3'b001 && ((A_reg - B_reg) != expected_result) && ~mul_phase) begin
+          if (op_reg == 3'b001 && ((A_reg - B_reg) != expected_result) && ~mul_phase) begin
             total_errors = total_errors + 1;
           end
           
           // A * B
           
-          if (opcode == 3'b010) begin
+          if (op_reg == 3'b010) begin
             multcheck = A_reg * B_reg;
             if (~mul_phase) begin 
                 if(expected_result != multcheck[2*DW-1:DW]) begin 
@@ -476,17 +1972,17 @@ module alu_tb;
           end
           
           // A & B 
-          if (opcode == 3'b011 && ((A_reg & B_reg) != expected_result) && ~mul_phase) begin
+          if (op_reg == 3'b011 && ((A_reg & B_reg) != expected_result) && ~mul_phase) begin
             total_errors = total_errors + 1;
           end
           
           // A | B 
-          if (opcode == 3'b100 && ((A_reg | B_reg) != expected_result) && ~mul_phase) begin 
+          if (op_reg == 3'b100 && ((A_reg | B_reg) != expected_result) && ~mul_phase) begin 
             total_errors = total_errors + 1;
           end
           
           // A ^ B
-          if (opcode == 3'b101 && ((A_reg ^ B_reg) != expected_result) && ~mul_phase) begin 
+          if (op_reg == 3'b101 && ((A_reg ^ B_reg) != expected_result) && ~mul_phase) begin 
             total_errors = total_errors + 1;
           end
           
@@ -497,13 +1993,19 @@ module alu_tb;
           end
           
         end
-        if (dvin) begin
+        if (dvin && ~is_interrupted) begin
           // Capture the current transaction inputs
           A_reg  = A;
           B_reg  = B;
           op_reg = opcode;
           // Increment input transaction counter
           input_transactions = input_transactions + 1;
+        end        
+        
+        if (dvout && ~dvin && mul_phase) begin 
+            if (opcode == 3'b010 && ~is_interrupted) begin // Enable to begin second phase of mult
+                dvin = 1;
+            end
         end
       end
     end
