@@ -102,12 +102,14 @@ module alu_tb;
             dvin = 1'b0;
           end
        end
-
+    
+        // A - B operation
+        
        rst = 1'b1;
        #20;
        rst = 1'b0;
        #20;
-       // A - B operation
+       
        
        for (i = 0; i < (2**DW); i = i + 1) begin
           for (j = 0; j < (2**DW); j = j + 1) begin
@@ -119,12 +121,31 @@ module alu_tb;
             dvin = 1'b0;
           end
        end
+       
+       
+       // A * B operation
+       
        rst = 1'b1;
        #20;
        rst = 1'b0;
        #20;
        
-       // A * B operation vyhadzuje napise input transaction
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            #20;
+            dvin = 1'b0;           
+          end
+       end    
+       
+       // A * B operation interrupt by ADD OPERATION with not asserted dvin (mul_phase attack) 
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
        
        for (i = 0; i < (2**DW); i = i + 1) begin
           for (j = 0; j < (2**DW); j = j + 1) begin
@@ -142,6 +163,161 @@ module alu_tb;
             rst = 1'b0;
             #20;
           end
+       end    
+       
+       // A * B operation interrupt by SUB OPERATION with not asserted dvin (mul_phase attack) 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            //#20;
+            #10;
+            dvin = 1'b0;
+            opcode = 3'b001;
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+       
+       // A * B operation interrupt by MUL OPERATION with not asserted dvin (mul_phase attack) 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            //#20;
+            #10;
+            dvin = 1'b0;
+            opcode = 3'b010;
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+      
+        
+        // A * B operation interrupt by AND OPERATION with not asserted dvin (mul_phase attack) 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            //#20;
+            #10;
+            dvin = 1'b0;
+            opcode = 3'b011;
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+       
+       
+       // A * B operation interrupt by OR OPERATION with not asserted dvin (mul_phase attack) 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            //#20;
+            #10;
+            dvin = 1'b0;
+            opcode = 3'b100;
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+      
+      // A * B operation interrupt by XOR OPERATION with not asserted dvin (mul_phase attack) 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+      
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            //#20;
+            #10;
+            dvin = 1'b0;
+            opcode = 3'b101;
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
+       end
+       
+       // A * B operation interrupt by NOT OPERATION with not asserted dvin (mul_phase attack) 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b010;
+            dvin = 1'b1;
+            //#20;
+            #10;
+            dvin = 1'b0;
+            opcode = 3'b110;
+            #20;
+            rst = 1'b1;
+            #20;
+            rst = 1'b0;
+            #20;
+          end
        end
        
        // A & B operation
@@ -150,6 +326,7 @@ module alu_tb;
        #20;
        rst = 1'b0;
        #20;
+       
        for (i = 0; i < (2**DW); i = i + 1) begin
           for (j = 0; j < (2**DW); j = j + 1) begin
             A = i;
@@ -160,12 +337,14 @@ module alu_tb;
             dvin = 1'b0;
           end
        end
+       
+       // A | B operation
            
        rst = 1'b1;
        #20;
        rst = 1'b0;
        #20;    
-       // A | B operation
+       
       
        for (i = 0; i < (2**DW); i = i + 1) begin
           for (j = 0; j < (2**DW); j = j + 1) begin
@@ -178,11 +357,12 @@ module alu_tb;
           end
        end
        
+       // A ^ B operation 
+       
        rst = 1'b1;
        #20;
        rst = 1'b0;
        #20;
-       // A ^ B operation 
        
        for (i = 0; i < (2**DW); i = i + 1) begin
           for (j = 0; j < (2**DW); j = j + 1) begin
@@ -194,12 +374,14 @@ module alu_tb;
             dvin = 1'b0;
           end
        end
-       
+        
+       // ~A operation (B is ignored) 
+         
        rst = 1'b1;
        #20;
        rst = 1'b0;
        #20;
-       // ~A operation (B is ignored)
+      
        
        for (i = 0; i < (2**DW); i = i + 1) begin 
             A = i;

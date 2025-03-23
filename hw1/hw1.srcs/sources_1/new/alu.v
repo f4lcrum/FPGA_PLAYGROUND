@@ -74,7 +74,7 @@ module alu #(
 
     reg [2*DW-1:0] mul_result;   // Register for 2*DW-bit multiplication result
     reg mul_phase;               // Tracks multiplication phase output (0: lower, 1: higher)
-
+    reg verify_result_mul_phase; // Verify if input A,B coresponds to mul_result during mul_phase asserted
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             mul_result = {2*DW{1'b0}};
@@ -84,7 +84,7 @@ module alu #(
         end else begin
             dvout <= 1'b0;      // Default: dvout is inactive unless valid data is produced
 
-            if (dvin || mul_phase) begin // KRISTIAN: Prejde to do vypoctu napr. prerusis nasobenie v druhej faze (mul_phase == 1) a spustis vypocet s dvin  = 0
+            if (dvin || mul_phase ) begin // KRISTIAN: Prejde to do vypoctu napr. prerusis nasobenie v druhej faze (mul_phase == 1) a spustis vypocet s dvin  = 0
                dvout <= 1'b1; // Valid output is being generated KRISTIAN: Sus, toto dat na koniec az po vypocte
                case (opcode)
                     3'b000: out <= A + B;           // ADD
