@@ -1630,6 +1630,80 @@ module alu_tb;
           end
        end    
        
+       // A & B operation
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+            A = i;
+            B = j;
+            opcode = 3'b011;
+            dvin = 1'b1;
+            #20; 
+            dvin = 1'b0;
+          end
+       end
+       
+       // A | B operation
+           
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;    
+       
+      
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+             A = i;
+            B = j;
+             opcode = 3'b100;
+            dvin = 1'b1;
+            #20; 
+            dvin = 1'b0;
+          end
+       end
+       
+       // A ^ B operation 
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin
+          for (j = 0; j < (2**DW); j = j + 1) begin
+             A = i;
+            B = j;
+            opcode = 3'b101;
+            dvin = 1'b1;
+            #20; 
+            dvin = 1'b0;
+          end
+       end
+        
+       // ~A operation (B is ignored) 
+         
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
+      
+       
+       for (i = 0; i < (2**DW); i = i + 1) begin 
+            A = i;
+            opcode = 3'b110;
+            dvin = 1'b1;
+            #20; 
+            dvin = 1'b0;
+       end  
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
        
        /* 
        // A * B operation interrupt by ADD OPERATION with not asserted dvin (mul_phase attack) 
@@ -1811,80 +1885,7 @@ module alu_tb;
           end
        end
        */
-       // A & B operation
        
-       rst = 1'b1;
-       #20;
-       rst = 1'b0;
-       #20;
-       
-       for (i = 0; i < (2**DW); i = i + 1) begin
-          for (j = 0; j < (2**DW); j = j + 1) begin
-            A = i;
-            B = j;
-            opcode = 3'b011;
-            dvin = 1'b1;
-            #20; 
-            dvin = 1'b0;
-          end
-       end
-       
-       // A | B operation
-           
-       rst = 1'b1;
-       #20;
-       rst = 1'b0;
-       #20;    
-       
-      
-       for (i = 0; i < (2**DW); i = i + 1) begin
-          for (j = 0; j < (2**DW); j = j + 1) begin
-             A = i;
-            B = j;
-             opcode = 3'b100;
-            dvin = 1'b1;
-            #20; 
-            dvin = 1'b0;
-          end
-       end
-       
-       // A ^ B operation 
-       
-       rst = 1'b1;
-       #20;
-       rst = 1'b0;
-       #20;
-       
-       for (i = 0; i < (2**DW); i = i + 1) begin
-          for (j = 0; j < (2**DW); j = j + 1) begin
-             A = i;
-            B = j;
-            opcode = 3'b101;
-            dvin = 1'b1;
-            #20; 
-            dvin = 1'b0;
-          end
-       end
-        
-       // ~A operation (B is ignored) 
-         
-       rst = 1'b1;
-       #20;
-       rst = 1'b0;
-       #20;
-      
-       
-       for (i = 0; i < (2**DW); i = i + 1) begin 
-            A = i;
-            opcode = 3'b110;
-            dvin = 1'b1;
-            #20; 
-            dvin = 1'b0;
-       end  
-       rst = 1'b1;
-       #20;
-       rst = 1'b0;
-       #20;
        
       // 4BIT TESTS AND "DVIN DISABLED" TEST END 
       // Finish the simulation
