@@ -48,6 +48,7 @@ module alu_tb;
     wire            dvout;
   
     // Global counters for transactions and errors
+    integer random_test_count;
     integer input_transactions;
     integer output_transactions;
     integer total_errors;
@@ -56,7 +57,6 @@ module alu_tb;
     // aux signal to indicate the simulation finish
     reg is_finished = 1'b0;
     reg is_interrupted = 1'b0;
-  
     // Instantiate DUT (Pozn. Device Under Test ) 
     alu #(.DW(DW)) dut (
       .clk(clk),
@@ -90,6 +90,30 @@ module alu_tb;
   
       // Generate a series of transactions
       /* complete the code here */
+      
+      //|----------------------------------------------|
+      //|  N-BIT TESTS WITH OP INTERRUPT   TEST BEGIN   |
+      //|----------------------------------------------|
+       random_test_count = 600;
+       
+       for (i = 0; i < random_test_count; i = i + 1) begin 
+         A = $urandom_range(0, 2**DW - 1);
+         B = $urandom_range(0, 2**DW - 1);
+         opcode = $urandom_range(0,6);
+         dvin = 1'b1;
+         if (opcode == 3'b010) begin
+            #40;
+         end 
+         else begin
+            #20;
+         end 
+         dvin = 1'b0;       
+       end
+       
+       rst = 1'b1;
+       #20;
+       rst = 1'b0;
+       #20;
       
       //|----------------------------------------------|
       //|  4BIT TESTS WITH OP INTERRUPT   TEST BEGIN   |
@@ -2021,6 +2045,7 @@ module alu_tb;
     $display("Input Transactions:  %0d", input_transactions);
     $display("Output Transactions: %0d", output_transactions);
     $display("Total Errors:        %0d", total_errors);
+    $display("Random tests count: %0d", random_test_count);
     $display("Total not asserted transcations: %0d", not_asserted_transcations);
     if (total_errors == 0 && input_transactions == output_transactions && not_asserted_transcations == 0)
       $display("FINAL RESULT: PASSED");
